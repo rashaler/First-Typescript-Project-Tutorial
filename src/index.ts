@@ -13,11 +13,6 @@ var obj2: object = { name: "Richard", age: 74 };
 myString = "hello";
 myAny = "you";
 
-// accepts two number & returns void
-function z(num1: number, num2: number): void { 
-    console.log("hello");
-}
-
 // Custom types (types you create)
 //  Types are often placed in a separate file where exported
 //  and imported where needed.
@@ -39,8 +34,58 @@ type Farm = {
         [name: string]: Animal
     }
 }
-// combining types
 
+type Monkey = {
+    diet: string;
+} & Animal;
+
+const m: Monkey = {
+    diet: "food",
+    name: "little monkey",
+    age: 3,
+    colors: ["brown", "red"],
+}
+
+console.log(m);
+
+const s1 = new Set<number>();
+// or 
+const s2: Set<number>  = new Set();
+
+type Fish = {
+    name: string
+    swim: () => void
+} & Animal
+
+type Dog = {
+    name: string
+    bark: () => void
+}
+
+const printName = (animal: Dog | Fish) => {
+     console.log(animal.name)
+}
+const f: Fish = {
+    name: "goldfish",
+    age: 5,
+    colors: ["gold"],
+    swim: () => { }
+}
+
+printName(f)
+
+// interfaces
+interface AnimalInterface {
+    name: string
+}
+
+const printNameWithInterace = (animal: Animal) => {
+    console.log(animal.name)
+}
+
+printNameWithInterace(f)
+
+// combining types
 const printAnimal = (animal: Animal) => {
     console.log(animal.name, animal.age)
     const xy = (animal.legs !== undefined ? animal.legs : 0) + 2
@@ -60,5 +105,3 @@ function zy(num1: number, num2: number): void {
 function zz(num1: number, num2: number): number { 
     return num1 + num2;
 }
-
-
